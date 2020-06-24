@@ -208,10 +208,22 @@ class Flat(models.Model):
 
 class Store(models.Model):
 
+    Gym = 'gym'
+    Restaurant = 'restaurant'
+    Cafe = 'cafe'
+    Shop = 'shop'
+
     tower = models.ForeignKey(Tower,on_delete=models.CASCADE,related_name="tower_store")
     Number = models.IntegerField()
     Name = models.CharField(max_length=100)
     Desc = models.TextField(max_length=300)
+    state_choices = [
+        (Shop,'Shop'),
+        (Restaurant,'Restaurant'),
+        (Cafe,'Cafe'),
+        (Gym,'Gym')
+    ]
+    Type = models.CharField(max_length=12,choices=state_choices,default=Shop)
     owners = models.ManyToManyField(
         Owner,
         through='ownershipStore'
