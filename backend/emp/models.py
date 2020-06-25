@@ -42,6 +42,7 @@ class Requests(models.Model):
     Replied = models.BooleanField(default=False,blank=True, null=True)
     Action = models.TextField(max_length=250,blank=True, null=True)
     NID = models.CharField(validators=[NID_regex],max_length=14,unique=True)
+    Mobile = models.CharField(validators=[Mobile_regex],max_length=11,unique=True)
 
     def __str__(self):
         return self.Title
@@ -114,11 +115,12 @@ class Owner(models.Model):
 
     NID = models.CharField(validators=[NID_regex],max_length=14,unique=True)
     Name = models.CharField(max_length=200)
+    Code = models.IntegerField(max_length=4)
     Proof = models.FileField(upload_to='images')
     Birthdate = models.DateField()
     Mobile = models.CharField(validators=[Mobile_regex],max_length=11,unique=True)
     DSL = models.CharField(validators=[DSL_regex],max_length=10,blank=True, null=True)
-    Avatar = models.FileField(upload_to='images')
+    Avatar = models.ImageField(upload_to='images')
     isOwner = models.BooleanField(default=True)
     Notes = models.TextField(max_length=200,blank=True, null=True)
     Papers = models.FileField(upload_to='images',blank=True, null=True)
@@ -144,13 +146,12 @@ class Block(models.Model):
 
     compound = models.ForeignKey(Compound,on_delete=models.CASCADE,related_name="compound_block")
     Number = models.IntegerField(unique=True)
-    Address = models.CharField(max_length=200)
     Area = models.FloatField(max_length=8)
     Desc = models.TextField(max_length=300,blank=True, null=True)
     towersNumber = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
-        return "Compound : " + str(self.compound.id) + " Block : " + str(self.Number)
+        return "Compound : " + self.compound.Name + " Block : " + str(self.Number)
 
 
 class Tower(models.Model):
@@ -161,7 +162,6 @@ class Tower(models.Model):
     block = models.ForeignKey(Block,on_delete=models.CASCADE,related_name="block_tower")
     Number = models.IntegerField()
     Name = models.CharField(max_length=100,blank=True, null=True)
-    Address = models.CharField(max_length=200)
     Area = models.FloatField(max_length=8)
     flatsNumber = models.IntegerField(blank=True, null=True)
     Cost = models.FloatField(max_length=8)
@@ -180,13 +180,19 @@ class Tower(models.Model):
     )
 
     def __str__(self):
-        return "block : " + str(self.block.id) +" Tower : " + str(self.Number)
+        return "Block : " + str(self.block.Number) +" Tower : " + str(self.Number)
 
 
 class ownershipTower(models.Model):
 
+    admin = models.ForeignKey(Admin,on_delete=models.CASCADE)
     owner = models.ForeignKey(Owner,on_delete=models.CASCADE)
     tower = models.ForeignKey(Tower,on_delete=models.CASCADE)
+    Total = models.FloatField()
+    Paid = models.FloatField()
+    serialTransaction  = models.FloatField()
+    proofTransaction = models.FileField(upload_to='images')
+
 
     def __str__(self):
         return "Owner : " + self.owner.Name + " Tower : " + self.tower.Name
@@ -203,7 +209,7 @@ class Flat(models.Model):
     Inhabited = models.BooleanField(default=False)
 
     def __str__(self):
-        return "Owner : " + self.owner.Name + " Tower : " + str(self.tower.id) + " Flat : " + str(self.Number)
+        return "Owner : " + self.owner.Name + " Tower : " + str(self.tower.Number) + " Flat : " + str(self.Number)
 
 
 class Store(models.Model):
@@ -248,6 +254,7 @@ class Family(models.Model):
     Son = 'son'
     Daughter = 'daughter'
     Cousin = 'cousin'
+    Husband = 'husband'
 
     owner = models.ForeignKey(Owner,on_delete=models.CASCADE,related_name="owner_family")
     Name = models.CharField(max_length=150)
@@ -257,6 +264,7 @@ class Family(models.Model):
         (Son,'Son'),
         (Daughter,'Daughter'),
         (Cousin,'Cousin'),
+        (Husband,'Husband'),
     ]
     Relationship = models.CharField(max_length=9,choices=relation_choices,default=Wife)
     Proof = models.FileField(upload_to='images')
