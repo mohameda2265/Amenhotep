@@ -115,7 +115,7 @@ class Owner(models.Model):
 
     NID = models.CharField(validators=[NID_regex],max_length=14,unique=True)
     Name = models.CharField(max_length=200)
-    Code = models.IntegerField(max_length=4)
+    Code = models.IntegerField()
     Proof = models.FileField(upload_to='images')
     Birthdate = models.DateField()
     Mobile = models.CharField(validators=[Mobile_regex],max_length=11,unique=True)
