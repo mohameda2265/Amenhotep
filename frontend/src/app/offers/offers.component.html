@@ -1,0 +1,57 @@
+<section class="background-flat-rose">
+        <h2 class="text-center white-text p-top-1 p-bottom-1 no-m arabic">إعلانات </h2>
+    </section>
+    <section class="container-fluid">
+        <section class="row">
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12 background-white p-top-3 p-bottom-3">
+                <article class="row m-bottom-2" *ngFor="let offer of offers">
+                    <div class="col-sm-12 col-md-8 text-right">
+                        <h1 class="arabic">
+                            <a [routerLink]="['/offer-details',offer.id]" class="link-red trans">{{offer.Title}}</a>
+                        </h1>
+                        <p class="arabic rtl">{{offer.Desc}}</p>
+                        <p class="text-muted arabic rtl"><i class="fa fa-calendar"></i>{{offer.created_date}}</p>
+                        <p class="arabic rtl green-text">{{offer.Installement}}</p>
+                        <p class="arabic rtl green-text">السعر النهائي : {{offer.Cost}}</p>
+                        <a [routerLink]="['/offer-details',offer.id]" class="btn btn-outline-danger btn-sm trans m-bottom-2 arabic rtl">للمزيد  من التفاصيل  <i class="fa fa-angle-left"></i></a>
+                    </div>
+                    <figure class="col-sm-4 position-relative text-right hidden-xs hidden-sm d-md-block">
+                        <a href="#" class="d-block position-relative">
+                            <img src="{{offer.Avatar}}" alt="الرئيس يوجه بالتوسع في المساحات الخضراء، بالعاصمة الادارية لتوفير حياة بيئية وصحية أفضل للمواطنين" class="img-fluid img-thumbnail">
+                        </a>
+                    </figure>
+                </article>
+
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        <!-- Previous Page Link -->
+                        <li class="page-item disabled"><span class="page-link trans">«</span></li>
+
+                        <!-- Pagination Elements -->
+                        <!-- "Three Dots" Separator -->
+
+                        <!-- Array Of Links -->
+                        <li class="page-item active">
+                            <span class="page-link trans">1</span>
+                            <span class="sr-only">(current)</span>
+                        </li>
+                        <li class="page-item"><a href="#" class="page-link trans">2</a></li>
+                        <li class="page-item"><a href="#" class="page-link trans">3</a></li>
+                        <li class="page-item"><a href="#" class="page-link trans">4</a></li>
+                        <!-- "Three Dots" Separator -->
+                        <li class="page-item disabled"><span class="page-link trans">...</span></li>
+
+                        <!-- Array Of Links -->
+                        <!-- "Three Dots" Separator -->
+
+                        <!-- Array Of Links -->
+                        <li class="page-item"><a href="#" class="page-link trans">30</a></li>
+                        <li class="page-item"><a href="#" class="page-link trans">31</a></li>
+
+                        <!-- Next Page Link -->
+                        <li class="page-item"><a href="#" rel="next" class="page-link trans">»</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+    </section>
