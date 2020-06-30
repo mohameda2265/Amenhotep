@@ -28,21 +28,21 @@ class Employee(models.Model):
 
 
 class Requests(models.Model):
-    request = 'request'
-    complaint = 'complaint'
+    request = 'طلب'
+    complaint = 'شكوي'
 
     Title = models.CharField(max_length=200)
     Desc = models.TextField(max_length=250)
     state_choices = [
-        (request,'Request'),
-        (complaint,'Complaint')
+        (request,'طلب'),
+        (complaint,'شكوي')
     ]
     Type = models.CharField(max_length=9,choices=state_choices,default=request)
     created_date = models.DateTimeField(default=timezone.now)
     Replied = models.BooleanField(default=False,blank=True, null=True)
     Action = models.TextField(max_length=250,blank=True, null=True)
-    NID = models.CharField(validators=[NID_regex],max_length=14,unique=True)
-    Mobile = models.CharField(validators=[Mobile_regex],max_length=11,unique=True)
+    Email = models.EmailField(blank=True, null=True)
+    Mobile = models.CharField(validators=[Mobile_regex],max_length=11)
 
     def __str__(self):
         return self.Title
@@ -59,7 +59,7 @@ class Existence(models.Model):
     ]
     Type = models.CharField(max_length=5,choices=state_choices,default=enter)
     Timing = models.DateTimeField(default=timezone.now)
-    NID = models.CharField(validators=[NID_regex],max_length=14,unique=True)
+    NID = models.CharField(validators=[NID_regex],max_length=14)
 
     def __str__(self):
         return self.Name
@@ -78,16 +78,16 @@ class Admin(models.Model):
 
 
 class Offer(models.Model):
-    installment = 'installment'
-    cash = 'cash'
+    installment = 'تقسيط'
+    cash = 'كاش'
 
     admin = models.ForeignKey(Admin,on_delete=models.CASCADE,related_name="offer_owner")
     Title = models.CharField(max_length=200)
     Desc = models.TextField(max_length=250)
     created_date = models.DateTimeField(default=timezone.now)
     state_choices = [
-        (installment,'Installement'),
-        (cash,'Cash')
+        (installment,'تقسيط'),
+        (cash,'كاش')
     ]
     Installement = models.CharField(max_length=12,choices=state_choices,default=installment)
     Cost = models.FloatField(max_length=8)
