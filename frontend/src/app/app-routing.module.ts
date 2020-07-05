@@ -8,6 +8,7 @@ import { DetailsComponent } from './details/details.component';
 import { OfferDetailsComponent } from './offer-details/offer-details.component';
 import { RequestsComponent } from './requests/requests.component';
 import { MapsComponent } from './maps/maps.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'offer-details/:id', component: OfferDetailsComponent },
   {path: 'requests', component: RequestsComponent },
   {path: 'maps', component: MapsComponent },
+  {path: 'login', component: LoginComponent },
 ];
 
 @NgModule({

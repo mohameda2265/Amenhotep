@@ -1,5 +1,8 @@
 from django.db.models import Q
-from rest_framework import mixins
+from django.contrib.auth.models import User
+from rest_framework import mixins,viewsets
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import (
     ListAPIView,
     RetrieveAPIView,
@@ -9,6 +12,7 @@ from rest_framework.generics import (
 )
 
 from .serializers import (
+    UserSerializer,
     NewsCreateSerializer,
     NewsUpdateSerializer,
     NewsListSerializer,
@@ -78,6 +82,12 @@ from emp.models import (
     Family,
 )
 
+# User Section
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
 
 # News Section

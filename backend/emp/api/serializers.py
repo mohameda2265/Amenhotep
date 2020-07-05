@@ -1,4 +1,6 @@
+from rest_framework.serializers import HyperlinkedModelSerializer
 from rest_framework.serializers import ModelSerializer
+from django.contrib.auth.models import User
 
 from emp.models import (
     News,
@@ -16,6 +18,16 @@ from emp.models import (
     ownershipStore,
     Family,
 )
+# User Section
+class UserSerializer(HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+            'id',
+            'username',
+            'email',
+            'password',
+        ]
 
 # News Section
 class NewsCreateSerializer(ModelSerializer):

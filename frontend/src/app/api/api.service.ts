@@ -42,4 +42,9 @@ export class ApiService {
     return this.http.post(this.baseurl + '/api/request/new/', body , {headers : this.httpHeaders});
   }
 
+  loginUser(userData): Observable<any>{
+    const body = { username : userData.username , password : userData.password }
+    return this.http.post(this.baseurl + '/api/login/' , body , {headers : this.httpHeaders});
+  }
+
 }

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'emp.apps.EmpConfig',
     'user.apps.UserConfig',
     'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [

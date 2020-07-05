@@ -1,8 +1,13 @@
 from django.urls import path
 # from django.conf.urls import url
 from . import views
+from rest_framework.authtoken.views import ObtainAuthToken
+
 app_name = 'news-api'
 urlpatterns = [
+    # Login Section
+    path('login/',ObtainAuthToken.as_view(),name='login'),
+
     # News Section
     path('news/new/',views.NewsCreateAPIView.as_view(),name='create_news'),
     path('news/<int:pk>/edit/',views.NewsUpdateAPIView.as_view(),name='edit_news'),
