@@ -24,6 +24,7 @@
                         <label for="desc"> <i class="fa fa-envelope"></i>الشكوى او المقترح </label>
                         <textarea class="form-control" autocomplete="off" required placeholder="اكتب رسالتك..." rows="3" name="desc" cols="50" id="desc" [(ngModel)]="newRequest.desc"></textarea>
                     </div>
+                    <input type="file" name="file" id="file" (change)="onImageChanged($event)">
                     <button (click)="createNewRequest()" type="submit" class="btn button button-red btn-md btn-block"><i class="fa fa-paper-plane-o"></i> ارسال</button>
                 </form>
             </div>

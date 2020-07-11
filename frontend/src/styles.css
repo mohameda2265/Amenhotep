@@ -1,6 +1,4 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
-! * Bootstrap v4.4.1 (https: //getbootstrap.com/)
-* Copyright 2011-2019 The Bootstrap Authors * Copyright 2011-2019 Twitter, Inc. * Licensed under MIT (https: //github.com/twbs/bootstrap/blob/master/LICENSE)
 :root {
     --blue: #007bff;
     --indigo: #6610f2;
@@ -12650,9 +12648,7 @@ a.text-dark:hover {
     color: #fff
 }
 
-rgb(170,
-34,
-34) .button-outline-trans {
+.button-outline-trans {
     background: transparent;
     border: 1px solid #666;
     color: #666

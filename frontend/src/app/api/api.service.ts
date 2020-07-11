@@ -29,17 +29,24 @@ export class ApiService {
     return this.http.get(this.baseurl + '/api/offers/' + id + '/' , {headers : this.httpHeaders});
   }
 
-  createRequest(newRequest): Observable<any>{
+  createRequest(newRequest,avatar): Observable<any>{
     const today= new Date();
+    let img ;
     let nowDate = '';
     let test = '';
     let z = "Z";
     test = formatDate(today, 'yyyy-MM-ddThh:mm:00', 'en-US', 'zzzz');
     nowDate = test + z;
     console.log(newRequest);
-    
-    const body= {Title : newRequest.title, Desc : newRequest.desc, Type : newRequest.type ,created_date : nowDate, Email : newRequest.email , Mobile : newRequest.mobile};
-    return this.http.post(this.baseurl + '/api/request/new/', body , {headers : this.httpHeaders});
+    console.log(avatar.get('Avatar'));
+    // img = 'http://127.0.0.1:8080/media/images/' + avatar.get('Avatar').name;
+    // console.log(img);    
+    const body = {Title : newRequest.title, Desc : newRequest.desc,
+      Type : newRequest.type ,created_date : nowDate,
+      Email : newRequest.email , Mobile : newRequest.mobile,
+      Avatar : avatar.get('Avatar')};
+      console.log(body);      
+    return this.http.post(this.baseurl + '/api/requests/new/', body , {headers : this.httpHeaders});
   }
 
   loginUser(userData): Observable<any>{
