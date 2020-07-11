@@ -1,0 +1,38 @@
+<header class="container-fluid navbar navbar-expand-lg flex-row-reverse navbar-dark bg-dark d-flex justify-content-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse " id="main-menu">
+
+        <ul class="form-inline no-p nav links ">
+            <li class="nav-item align-self-center">
+                <a href="#" class="btn  btn-danger "><i class="fa fa-sign-out "></i> خروج </a>
+            </li>
+            <li class="nav-item align-self-center">
+                <span rel="alternate" class="steel-text trans" style="color:white;">
+                            |مرحبا بك ......
+                </span>
+            </li>
+        </ul>
+    </div>
+</header>
+<section class="container-fluid">
+    <section class="row">
+        <div class="col-md-6 offset-md-3 m-top-3 m-bottom-2">
+            <div class="p-top-3 p-right--3 p-bottom-3 p-left--3 background-white">
+                <h1 class="text-center primary-text title m-bottom-1">إضافة ملكية </h1>
+                <form #f = "ngForm" method="POST" accept-charset="UTF-8">
+                    <div class="form-group  ">
+                        <label for="name"> <i class="fa fa-plus"></i>المالك للمتجر</label>
+                        <select class="form-control" required name="onum" #onum="ngModel" [(ngModel)]="selectedOwnership.owner">
+                            <option *ngFor="let owner of owners" value={{owner.id}}>{{owner.id}} : {{owner.Name}}</option>
+                        </select>
+                        <div class="alert alert-danger" *ngIf = "onum.touched && !onum.valid">Invalid input owner information</div>
+                    </div>
+                    <button (click)="addOwnership()" type="submit" class="btn button button-green-white btn-md btn-block" [disabled]="!f.valid"><i class="fa fa-paper-plane-o"></i> حفظ</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</section>

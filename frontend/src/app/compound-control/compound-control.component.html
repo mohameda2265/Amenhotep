@@ -1,0 +1,49 @@
+<header class="container-fluid navbar navbar-expand-lg flex-row-reverse navbar-dark bg-dark d-flex justify-content-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse " id="main-menu">
+
+        <ul class="form-inline no-p nav links ">
+            <li class="nav-item align-self-center">
+                <a href="#" class="btn  btn-danger "><i class="fa fa-sign-out "></i> خروج </a>
+            </li>
+            <li class="nav-item align-self-center">
+                <span rel="alternate" class="steel-text trans" style="color:white;">
+                            |مرحبا بك ......
+                </span>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="container">
+    <form class="pull-right  form-inline my-5 my-lg-2" method="GET">
+        <button class=" btn btn-outline-danger mr-5" type="submit"><a routerLink = "/employee/addcompounds"> إضافة</a></button>
+        <button class="btn  btn-info my-2 my-sm-2 mr-1" type="submit" (click)="searchCompounds(pattern)">أبحث</button>
+        <input (input)="searchCompounds(pattern)" class="form-control mr-sm-2" type="search" placeholder="اسم الكمباوند" name="pattern" [(ngModel)]="pattern">
+    </form>
+    <table class="table">
+<thead class="thead-dark">
+<tr>
+  <th style="text-align:center;" scope="col">رقم الكومباوند</th>
+  <th style="text-align:center;" scope="col">اسم الكمباوند</th>
+  <th style="text-align:center;" scope="col">العنوان</th>
+  <th style="text-align:center;" scope="col">تفاصيل</th>
+  <th style="text-align:center;" scope="col">تعديل</th>
+  <th style="text-align:center;" scope="col">حذف</th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor = "let com of compounds">
+  <th style="text-align:center;" scope="row">{{com.id}}</th>
+  <th style="text-align:center;">{{com.Name}}</th>
+  <th style="text-align:center;">{{com.Address}}</th>
+  <th style="text-align:center;"><a [routerLink]="['/employee/compounddetails/',com.id]" class="btn text-secondary px-0"><i class="fa fa-bars" style="font-size:24px;color:red;"></i></a></th>
+  <th style="text-align:center;"><a [routerLink]="['/employee/addcompounds/',com.id]" class="btn text-secondary px-0"><i class="fa fa-edit" style="font-size:24px;color:red;"></i></a></th>
+  <th style="text-align:center;"><a (click)="deleteCompound(com.id)" class="btn text-secondary px-0"><i class="fa fa-trash" style="font-size:24px;color:red;"></i></a></th>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-danger text-center" *ngIf = "compounds.length == 0">No Compunds to display</div>
+</div>

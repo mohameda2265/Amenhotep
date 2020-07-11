@@ -1,0 +1,96 @@
+<header class="container-fluid navbar navbar-expand-lg flex-row-reverse navbar-dark bg-dark d-flex justify-content-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse " id="main-menu">
+
+        <ul class="form-inline no-p nav links ">
+            <li class="nav-item align-self-center">
+                <a href="#" class="btn  btn-danger "><i class="fa fa-sign-out "></i> خروج </a>
+            </li>
+            <li class="nav-item align-self-center">
+                <span rel="alternate" class="steel-text trans" style="color:white;">
+                            |مرحبا بك ......
+                </span>
+            </li>
+        </ul>
+    </div>
+</header>
+<section class="container-fluid">
+    <section class="row">
+        <div class="col-md-6 offset-md-3 m-top-3 m-bottom-2">
+            <div class="p-top-3 p-right--3 p-bottom-3 p-left--3 background-white">
+                <h1 *ngIf="!tid" class="text-center primary-text title m-bottom-1">إضافة مبنى جديد </h1>
+                <h1 *ngIf="tid" class="text-center primary-text title m-bottom-1">تعديل مبنى حالى </h1>
+                <form #f = "ngForm" method="POST" accept-charset="UTF-8">
+                    <div class="form-group  ">
+                        <label for="name"> <i class="fa fa-plus"></i>البلوك</label>
+                        <select class="form-control" required name="bnum" #bnum="ngModel" [(ngModel)]="selectedTower.block">
+                            <option *ngFor="let block of blocks" value={{block.id}}>بلوك رقم : {{block.Number}} - كمباوند : {{block.compound}}</option>
+                        </select>
+                        <div class="alert alert-danger" *ngIf = "bnum.touched && !bnum.valid">Invalid input block Number</div>
+                    </div>
+                    <div class="form-group  ">
+                        <label for="num"> <i class="fa fas fa-space-shuttle"></i>رقم البرج</label>
+                        <input class="form-control" ngModel autocomplete="off" required placeholder="رقم غير مستخدم سابقا" name="num" [(ngModel)]="selectedTower.Number" #num="ngModel" type="number" id="area">
+                        <div class="alert alert-danger" *ngIf = "num.touched && !num.valid">Invalid input Number</div>
+                    </div>
+                    <div class="form-group  ">
+                        <label for="name"> <i class="fa fa-plus"></i>أسم مبنى</label>
+                        <input class="form-control" autocomplete="off" ngModel [(ngModel)]="selectedTower.Name" required placeholder="اسم البرج" name="name" #name="ngModel" type="text" id="name">
+                        <div class="alert alert-danger" *ngIf = "name.touched && name.invalid">Tower Name is not valid</div>
+                    </div>
+                    <div class="form-group  ">
+                        <label for="num"> <i class="fa fas fa-space-shuttle"></i>مساحة المبنى</label>
+                        <input class="form-control" autocomplete="off" required ngModel [(ngModel)]="selectedTower.Area" placeholder="" name="area" #area="ngModel" type="number" id="area">
+                        <div class="alert alert-danger" *ngIf = "area.touched && area.invalid">Tower area is not valid</div>
+                    </div>
+                    <div class="form-group  ">
+                        <label for="name"> <i class="fa fa-sort-numeric-asc"></i>عدد الشقق المتاحة داخل المبنى</label>
+                        <input class="form-control" autocomplete="off" required ngModel [(ngModel)]="selectedTower.flatsNumber" placeholder="" name="fnum" #fnum="ngModel" type="number" id="fnum">
+                        <div class="alert alert-danger" *ngIf = "fnum.touched && fnum.invalid">Flats Number is not valid</div>
+                    </div>
+                    <div class="form-group  ">
+                        <label for="name"> <i class="fa fa-dollar"></i>التكلفة الكلية للمبنى</label>
+                        <input class="form-control" autocomplete="off" required ngModel [(ngModel)]="selectedTower.Cost" placeholder="" name="cost" #cost="ngModel" type="number" id="cost">
+                        <div class="alert alert-danger" *ngIf = "cost.touched && cost.invalid">Cost is not valid</div>
+                    </div>
+                    <div class="form-group  ">
+                        <label for="name"> <i class="fa fa-sort-numeric-asc"></i>عدد الطوابق المتاحة داخل المبنى</label>
+                        <input class="form-control" autocomplete="off" ngModel [(ngModel)]="selectedTower.floorsNumber" required placeholder="" name="floor" #floor="ngModel" type="number" id="floor">
+                        <div class="alert alert-danger" *ngIf = "floor.touched && floor.invalid">Floors Number is not valid</div>
+                    </div>
+                    <div class="form-group  ">
+                        <label for="name"> <i class="fa fa-sort-numeric-asc"></i>عدد المحلات التجارية المتاحة داخل المبنى</label>
+                        <input class="form-control" autocomplete="off" required ngModel [(ngModel)]="selectedTower.storesNumber" placeholder="" name="snum" #snum="ngModel" type="number" id="snum">
+                        <div class="alert alert-danger" *ngIf = "snum.touched && snum.invalid">Number is not valid</div>
+                    </div>
+                    <div class="text-right form-group ">
+                        <label for="message"> <i class="fa flat-light-green-text"></i>نوع المبنى </label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="selectedTower.Type" name="inlineRadioOptions" id="inlineRadio1" value="residential">
+                            <label class="form-check-label" for="inlineRadio1">سكنى</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="selectedTower.Type" name="inlineRadioOptions" id="inlineRadio2" value="commercial">
+                            <label class="form-check-label" for="inlineRadio2">تجاري</label>
+                        </div>
+                    </div>
+                    <div class="form-group  ">
+                        <label for="name"> <i class="fa fa-plus"></i>إضافة مالك المبنى </label>
+                        <select class="form-control" [(ngModel)]="selectedTower.owner" name="select" #select="ngModel">
+                            <option>لا يوجد</option>
+                            <option *ngFor="let owner of owners" value={{owner.id}}>{{owner.id}} : {{owner.Name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group  ">
+                        <label for="name"> <i class="fa fa-plus"></i>ملاحظات أخرى</label>
+                        <input class="form-control" autocomplete="off" [(ngModel)]="selectedTower.Notes" name="notes" type="text" id="notes">
+                    </div>
+                    <button (click)="handleRequest()" type="submit" [disabled] = "!f.valid" class="btn button button-green-white btn-md btn-block"><i class="fa fa-paper-plane-o"></i> حفظ</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</section>

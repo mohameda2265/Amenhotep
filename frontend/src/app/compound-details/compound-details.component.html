@@ -1,0 +1,87 @@
+<header class="container-fluid navbar navbar-expand-lg flex-row-reverse navbar-dark bg-dark d-flex justify-content-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse " id="main-menu">
+
+        <ul class="form-inline no-p nav links ">
+            <li class="nav-item align-self-center">
+                <a href="#" class="btn  btn-danger "><i class="fa fa-sign-out "></i> خروج </a>
+            </li>
+            <li class="nav-item align-self-center">
+                <span rel="alternate" class="steel-text trans" style="color:white;">
+                            |مرحبا بك ......
+                </span>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="container">
+<div style="background-color:black;color:white;margin:10px;text-align:center">
+   <h3>التفاصيل العامة</h3>
+</div>
+<table class="table">
+    <thead class="thead-dark-darkenblue">
+        <tr>
+            <th scope="col" style="text-align:center;color:red;">رقم الكمباوند</th>
+            <th scope="col" style="text-align:center;color:red;">اسم الكمباوند</th>
+            <th scope="col" style="text-align:center;color:red;">مساحة الكمباوند</th>
+        </tr>
+    </thead>
+     <tbody>
+        <tr>
+           <th scope="row" style="text-align:center;">{{compound.Number}}</th>
+           <th style="text-align:center;">{{compound.Name}}</th>
+           <th style="text-align:center;">{{compound.Area}}</th>
+        </tr>
+     </tbody>
+</table>
+<div style="background-color:black;color:white;margin:10px;text-align:center">
+   <h3>تفاصيل العنوان</h3>
+</div>
+<table class="table">
+    <thead class="thead-dark-darkenblue">
+        <tr>
+            <th scope="col" style="text-align:center;color:blue;">الموقع التفصيلى</th>
+        </tr>
+    </thead>
+     <tbody>
+        <tr>
+           <th scope="row" style="text-align:center;">{{compound.Address}}</th>
+        </tr>
+     </tbody>
+</table>
+<div style="background-color:black;color:white;margin:10px;text-align:center">
+   <h3>الموقع على الخريطة</h3>
+</div>
+<table class="table">
+    <thead class="thead-dark-link">
+        <tr>
+            <th scope="col" style="text-align:center;color:blue;">خط الطول</th>
+            <th scope="col" style="text-align:center;color:blue;">خط العرض</th>
+        </tr>
+    </thead>
+     <tbody>
+        <tr>
+           <th style="text-align:center;color:red;">{{compound.Longitude}}</th>
+           <th style="text-align:center;color:red;">{{compound.Latitude}}</th>
+        </tr>
+     </tbody>
+</table>
+<div style="background-color:black;color:white;margin:10px;text-align:center">
+   <h3>معلومــات أخــــرى</h3>
+</div>
+<table class="table">
+    <thead class="thead-dark-link">
+        <tr>
+            <th scope="col" style="text-align:center;color:blue;">تفاصيل عن الكمباوند</th>
+        </tr>
+    </thead>
+     <tbody>
+        <tr>
+           <th scope="row" style="text-align:center;color:red;">{{compound.Desc}}</th>
+        </tr>
+     </tbody>
+</table>
+</div>

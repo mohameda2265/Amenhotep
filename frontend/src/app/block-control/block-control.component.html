@@ -1,0 +1,50 @@
+<header class="container-fluid navbar navbar-expand-lg flex-row-reverse navbar-dark bg-dark d-flex justify-content-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse " id="main-menu">
+
+        <ul class="form-inline no-p nav links ">
+            <li class="nav-item align-self-center">
+                <a href="#" class="btn  btn-danger "><i class="fa fa-sign-out "></i> خروج </a>
+            </li>
+            <li class="nav-item align-self-center">
+                <span rel="alternate" class="steel-text trans" style="color:white;">
+                            |مرحبا بك ......
+                </span>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="container">
+    <form class="pull-right  form-inline my-5 my-lg-2" method="GET">
+        <button class=" btn btn-outline-success mr-5  " type="submit"><a [routerLink]="['/employee/addblocks']"> إضافة</a></button>
+        <button (click)="searchBlocks(compoundNumber,blockNumber)" class="btn  btn-info my-2 my-sm-2 mr-1" type="sumit">أبحث</button>
+        <input (input)="onInit()" class="form-control mr-sm-2 mr-1" type="number" [(ngModel)]="compoundNumber" placeholder="رقم الكومباوند" name="q">
+        <input (input)="onInit()" class="form-control mr-sm-2" type="number" [(ngModel)]="blockNumber" placeholder="رقم البلوك" name="q">
+    </form>
+    <table class="table">
+<thead class="thead-dark">
+<tr>
+  <th scope="col" style="text-align:center;">رقم البلوك</th>
+  <th scope="col" style="text-align:center;">مساحة البلوك</th>
+  <th scope="col" style="text-align:center;">عدد الأبراج</th>
+  <th scope="col" style="text-align:center;">تفاصيل</th>
+  <th scope="col" style="text-align:center;">تعديل</th>
+  <th scope="col" style="text-align:center;">حذف</th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor = "let blck of blocks">
+  <th scope="row" style="text-align:center;">{{blck.id}}</th>
+  <th style="text-align:center;">{{blck.Area}}</th>
+  <th style="text-align:center;">{{blck.towersNumber}}</th>
+  <th style="text-align:center;"><a [routerLink]="['/employee/blockdetails/',blck.id]" class="btn text-secondary px-0"><i class="fa fa-bars" style="font-size:24px;color:red;"></i></a></th>
+  <th style="text-align:center;"><a [routerLink]="['/employee/addblocks/',blck.id]" class="btn text-secondary px-0"><i class="fa fa-edit" style="font-size:24px;color:red;"></i></a></th>
+  <th style="text-align:center;"><a (click)= "deleteBlock(blck.id)" class="btn text-secondary px-0"><i class="fa fa-trash" style="font-size:24px;color:red;"></i></a></th>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-danger text-center" *ngIf = "blocks.length == 0">No Blocks to display</div>
+</div>

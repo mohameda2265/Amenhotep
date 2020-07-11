@@ -1,0 +1,61 @@
+<header class="container-fluid navbar navbar-expand-lg flex-row-reverse navbar-dark bg-dark d-flex justify-content-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse " id="main-menu">
+
+        <ul class="form-inline no-p nav links ">
+            <li class="nav-item align-self-center">
+                <a href="#" class="btn  btn-danger "><i class="fa fa-sign-out "></i> خروج </a>
+            </li>
+            <li class="nav-item align-self-center">
+                <span rel="alternate" class="steel-text trans" style="color:white;">
+                            |مرحبا بك ......
+                </span>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="container">
+<div style="background-color:black;color:white;margin:10px;text-align:center">
+   <h3>التفاصيل العامة</h3>
+</div>
+<table class="table">
+    <thead class="thead-dark-darkenblue">
+        <tr>
+            <th scope="col" style="text-align:center;color:red;">رقم الشقة</th>
+            <th scope="col" style="text-align:center;color:red;">الطابق</th>
+            <th scope="col" style="text-align:center;color:red;">البرج</th>
+            <th scope="col" style="text-align:center;color:blue;">البلوك</th>
+            <th scope="col" style="text-align:center;color:blue;">الكمباوند</th>
+        </tr>
+    </thead>
+     <tbody>
+        <tr>
+           <th scope="row" style="text-align:center;">{{flat.Number}}</th>
+           <th style="text-align:center;">{{flat.floorNumber}}</th>
+           <th style="text-align:center;"><a [routerLink]="['/employee/towerdetails',flat.tower]">{{flat.tower}}</a></th>
+           <th style="text-align:center;"><a [routerLink]="['/employee/blockdetails',block.id]">{{block?.id}}</a></th>
+           <th style="text-align:center;"><a [routerLink]="['/employee/compounddetails',compound.id]">{{compound?.id}}</a></th>
+        </tr>
+     </tbody>
+</table>
+<div style="background-color:black;color:white;margin:10px;text-align:center">
+   <h3>تفاصيل المالك</h3>
+</div>
+<table class="table">
+    <thead class="thead-dark-link">
+        <tr>
+            <th scope="col" style="text-align:center;">الرقم التسلسلى</th>
+            <th scope="col" style="text-align:center;">اسم المالك</th>
+        </tr>
+    </thead>
+     <tbody>
+        <tr>
+           <th style="text-align:center;color:red;"><a [routerLink]="['/employee/ownerdetails',owner.id]">{{owner?.id}}</a></th>
+           <th style="text-align:center;color:red;">{{owner?.Name}}</th>
+        </tr>
+     </tbody>
+</table>
+</div>

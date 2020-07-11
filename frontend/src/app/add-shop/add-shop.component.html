@@ -1,0 +1,81 @@
+<header class="container-fluid navbar navbar-expand-lg flex-row-reverse navbar-dark bg-dark d-flex justify-content-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse " id="main-menu">
+
+        <ul class="form-inline no-p nav links ">
+            <li class="nav-item align-self-center">
+                <a href="#" class="btn  btn-danger "><i class="fa fa-sign-out "></i> خروج </a>
+            </li>
+            <li class="nav-item align-self-center">
+                <span rel="alternate" class="steel-text trans" style="color:white;">
+                            |مرحبا بك ......
+                </span>
+            </li>
+        </ul>
+    </div>
+</header>
+<section class="container-fluid">
+    <section class="row">
+        <div class="col-md-6 offset-md-3 m-top-3 m-bottom-2">
+            <div class="p-top-3 p-right--3 p-bottom-3 p-left--3 background-white">
+                <h1 *ngIf="!sid" class="text-center primary-text title m-bottom-1"> متجر جديد </h1>
+                <h1 *ngIf="sid" class="text-center primary-text title m-bottom-1"> تعديل المتجر </h1>
+                <form #f = "ngForm" method="POST" accept-charset="UTF-8">
+                    <div class="form-group  ">
+                        <label for="name"> <i class="fa fa-plus"></i>أسم المتجر</label>
+                        <input class="form-control" autocomplete="off" ngModel [(ngModel)]="selectedShop.Name" required placeholder="اسم المتجر" name="name" #name="ngModel" type="text" id="name">
+                        <div class="alert alert-danger" *ngIf = "name.touched && name.invalid">Shop Name is not valid</div>
+                    </div>
+                    <div class="form-group  ">
+                        <label for="name"> <i class="fa fa-plus"></i>البرج</label>
+                        <select class="form-control" required name="tnum" #tnum="ngModel" [(ngModel)]="selectedShop.tower">
+                            <option *ngFor="let tower of towers" value={{tower.id}}>{{tower.Name}}</option>
+                        </select>
+                        <div class="alert alert-danger" *ngIf = "tnum.touched && !tnum.valid">Invalid input tower Number</div>
+                    </div>
+                    <div class="form-group  ">
+                        <label for="name"> <i class="fa fa-plus"></i>رقم المحل</label>
+                        <input class="form-control" autocomplete="off" ngModel [(ngModel)]="selectedShop.Number" required placeholder="رقم المتجر غير مستخدم سابقا" name="snum" #snum="ngModel" type="number" id="snum">
+                        <div class="alert alert-danger" *ngIf = "snum.touched && snum.invalid">Shop Number is not valid</div>
+                    </div>
+                    <div class="form-group  ">
+                        <label for="name"> <i class="fa fa-plus"></i>رقم الطابق</label>
+                        <input class="form-control" autocomplete="off" ngModel [(ngModel)]="selectedShop.floorNumber" required placeholder="رقم الطابق الخاص بالمتجر" name="fnum" #fnum="ngModel" type="number" id="fnum">
+                        <div class="alert alert-danger" *ngIf = "fnum.touched && fnum.invalid">Floor Number is not valid</div>
+                    </div>
+                    <div class="text-right form-group ">
+                        <label for="message"> <i class="fa fa-plus"></i>نوع المحل</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="selectedShop.Type" name="inlineRadioOptions" id="inlineRadio1" value="shop">
+                            <label class="form-check-label" for="inlineRadio1">سوبر ماركت</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="selectedShop.Type" name="inlineRadioOptions" id="inlineRadio2" value="restaurant">
+                            <label class="form-check-label" for="inlineRadio2">مطعم</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="selectedShop.Type" name="inlineRadioOptions" id="inlineRadio1" value="cafe">
+                            <label class="form-check-label" for="inlineRadio1">كافيه</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="selectedShop.Type" name="inlineRadioOptions" id="inlineRadio2" value="gym">
+                            <label class="form-check-label" for="inlineRadio2">صالة رياضية</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="selectedShop.Type" name="inlineRadioOptions" id="inlineRadio1" value="mall">
+                            <label class="form-check-label" for="inlineRadio1">مول تجارى</label>
+                        </div>
+                    </div>
+                    <div class="form-group  ">
+                        <label for="name"> <i class="fa fa-plus"></i>الوصف</label>
+                        <input class="form-control" autocomplete="off" ngModel [(ngModel)]="selectedShop.Desc" required placeholder="وصف المكان" name="desc" #desc="ngModel" type="text" id="desc">
+                    </div>
+                    <button (click)="handleRequest()" type="submit" [disabled] = "!f.valid" class="btn button button-green-white btn-md btn-block"><i class="fa fa-paper-plane-o"></i> حفظ</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</section>

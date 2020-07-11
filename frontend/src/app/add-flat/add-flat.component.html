@@ -1,0 +1,68 @@
+<header class="container-fluid navbar navbar-expand-lg flex-row-reverse navbar-dark bg-dark d-flex justify-content-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse " id="main-menu">
+
+        <ul class="form-inline no-p nav links ">
+            <li class="nav-item align-self-center">
+                <a href="#" class="btn  btn-danger "><i class="fa fa-sign-out "></i> خروج </a>
+            </li>
+            <li class="nav-item align-self-center">
+                <span rel="alternate" class="steel-text trans" style="color:white;">
+                            |مرحبا بك ......
+                </span>
+            </li>
+        </ul>
+    </div>
+</header>
+<section class="container-fluid">
+    <section class="row">
+        <div class="col-md-6 offset-md-3 m-top-3 m-bottom-2">
+            <div class="p-top-3 p-right--3 p-bottom-3 p-left--3 background-white">
+                <h1 class="text-center primary-text title m-bottom-1">إضافة شقة جديده </h1>
+                <form #f = "ngForm" method="POST" accept-charset="UTF-8">
+                    <div class="form-group  ">
+                        <label for="name"> <i class="fa fa-plus"></i>البرج</label>
+                        <select class="form-control" required name="tnum" #tnum="ngModel" [(ngModel)]="selectedFlat.tower">
+                            <option *ngFor="let tower of towers" value={{tower.id}}>{{tower.Name}}</option>
+                        </select>
+                        <div class="alert alert-danger" *ngIf = "tnum.touched && !tnum.valid">Invalid input tower Number</div>
+                    </div>
+                    <div class="form-group  ">
+                        <label for="name"> <i class="fa fa-sort-numeric-asc"></i>رقم الشقة</label>
+                        <input class="form-control" autocomplete="off" [(ngModel)]="selectedFlat.Number" required ngModel placeholder="" name="fnum" #fnum = "ngModel" type="number" id="fnum">
+                        <div class="alert alert-danger" *ngIf = "fnum.touched && fnum.invalid">Flat Number is not vlaid</div>
+                    </div>
+                    <div class="form-group  ">
+                        <label for="name"> <i class="fa fa-sort-numeric-asc"></i>رقم الدور</label>
+                        <input class="form-control" autocomplete="off" required ngModel [(ngModel)]="selectedFlat.floorNumber" placeholder="" name="floor" #floor = "ngModel" type="number" id="floor">
+                        <div class="alert alert-danger" *ngIf = "floor.touched && floor.invalid">Floor Number is not vlaid</div>
+                    </div>
+
+                    <div class="form-group  ">
+                        <label for="num"> <i class="fa fas fa-space-shuttle"></i>مساحة الشقة</label>
+                        <input class="form-control" autocomplete="off" required ngModel [(ngModel)]="selectedFlat.Area" placeholder="" name="area" #area = "ngModel" type="number" id="area">
+                        <div class="alert alert-danger" *ngIf = "area.touched && area.invalid">Flat Area is not vlaid</div>
+                    </div>
+                    <div class="text-right form-group">
+                        <label for="message"> <i class=" fa fa-chevron-circle-up"></i>نوع الشقة </label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="check" id="check" [(ngModel)]="selectedFlat.Inhabited">
+                            <label class="form-check-label" for="inlineRadio1">مشغولة أم خالية </label>
+                        </div>
+                    </div>
+                    <div class="form-group  ">
+                        <label for="name"> <i class="fa fa-plus"></i>المالك ان وجد</label>
+                        <select class="form-control" required name="own" #own="ngModel" [(ngModel)]="selectedFlat.owner">
+                            <option *ngFor="let owner of owners" value={{owner.id}}>{{owner.id}} : {{owner.Name}}</option>
+                        </select>
+                        <div class="alert alert-danger" *ngIf = "own.touched && !own.valid">Invalid input owner</div>
+                    </div>
+                    <button (click)="handleRequest()" type="submit" class="btn button button-green-white btn-md btn-block" [disabled]="!f.valid"><i class="fa fa-paper-plane-o"></i> حفظ</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</section>

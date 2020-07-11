@@ -1,0 +1,70 @@
+<header class="container-fluid navbar navbar-expand-lg flex-row-reverse navbar-dark bg-dark d-flex justify-content-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse " id="main-menu">
+
+        <ul class="form-inline no-p nav links ">
+            <li class="nav-item align-self-center">
+                <a href="#" class="btn  btn-danger "><i class="fa fa-sign-out "></i> خروج </a>
+            </li>
+            <li class="nav-item align-self-center">
+                <span rel="alternate" class="steel-text trans" style="color:white;">
+                            |مرحبا بك ......
+                </span>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="container">
+<div style="background-color:black;color:white;margin:10px;text-align:center">
+   <h3>التفاصيل العامة</h3>
+</div>
+<table class="table">
+    <thead class="thead-dark-darkenblue">
+        <tr>
+            <th scope="col" style="text-align:center;color:red;">الكمباوند</th>
+            <th scope="col" style="text-align:center;color:red;">رقم البلوك</th>
+            <th scope="col" style="text-align:center;color:red;">مساحة البلوك</th>
+        </tr>
+    </thead>
+     <tbody>
+        <tr>
+           <th scope="row" style="text-align:center;"><a [routerLink]="['/employee/compounddetails/',block.compound]">{{block.compound}}</a></th>
+           <th style="text-align:center;">{{block.Number}}</th>
+           <th style="text-align:center;">{{block.Area}}</th>
+        </tr>
+     </tbody>
+</table>
+<div style="background-color:black;color:white;margin:10px;text-align:center">
+   <h3> إحصائيات</h3>
+</div>
+<table class="table">
+    <thead class="thead-dark-darkenblue">
+        <tr>
+            <th scope="col" style="text-align:center;color:blue;">عدد أبراج البلوك</th>
+        </tr>
+    </thead>
+     <tbody>
+        <tr>
+           <th scope="row" style="text-align:center;">{{block.towersNumber}}</th>
+        </tr>
+     </tbody>
+</table>
+<div style="background-color:black;color:white;margin:10px;text-align:center">
+   <h3>معلومــات أخــــرى</h3>
+</div>
+<table class="table">
+    <thead class="thead-dark-link">
+        <tr>
+            <th scope="col" style="text-align:center;color:blue;">وصف البلوك</th>
+        </tr>
+    </thead>
+     <tbody>
+        <tr>
+           <th scope="row" style="text-align:center;color:red;">{{block.Desc}}</th>
+        </tr>
+     </tbody>
+</table>
+</div>

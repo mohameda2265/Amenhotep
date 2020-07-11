@@ -1,48 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api/api.service';
+import { error } from 'protractor';
 
 @Component({
   selector: 'app-requests',
   templateUrl: './requests.component.html',
-  styleUrls: ['./requests.component.css']
+  styleUrls: ['./requests.component.css'],
 })
 export class RequestsComponent implements OnInit {
-
-  newRequest  ;
-  avatar : File;
-  alone;
-  img;
-
-  constructor(private api : ApiService) {
-    this.newRequest = {Title : '', Desc : '', Type : '',created_date:'', Email : '', Mobile : ''};
-   }
-
-  ngOnInit(): void {
-  }
-  onImageChanged(event : any){
-    this.avatar = event.target.files[0];
-    // console.log(this.avatar.name);
-    this.alone = new FormData();
-    this.alone.append('Avatar' ,this.avatar , this.avatar.name);
-    // console.log(this.alone.get('Avatar'));
-    const formBody = [];
-		for (const property in this.avatar) {
-			const encodedKey = encodeURIComponent(property);
-			const encodedValue = encodeURIComponent(this.avatar[property]);
-			formBody.push(encodedKey + '=' + encodedValue);
-		}
-    this.img = formBody.join('&');
-    console.log(this.img);
-    console.log(formBody);
-        
+  newRequest;
+  submitted = false;
+  constructor(private api: ApiService) {
+    this.newRequest = [
+      {
+        Title: '',
+        Desc: '',
+        Type: '',
+        created_date: '',
+        Email: '',
+        Mobile: '',
+      },
+    ];
+    this.newRequest.Type = 'request';
   }
 
-  createNewRequest(){
-    this.api.createRequest(this.newRequest, this.alone).subscribe(data =>{
-      this.newRequest = data;
-      console.log(this.newRequest);
-      
-    })
+  ngOnInit(): void {}
+  createNewRequest() {
+    this.api.createRequest(this.newRequest).subscribe(
+      (data) => {
+        this.newRequest.push(data);
+        console.log(this.newRequest);
+        this.submitted = true;
+        window.location.reload();
+      },
+      (error) => {
+        console.log(error);
+        alert('يوجد خطأ فى البيانات ');
+        this.submitted = false;
+      }
+    );
   }
-
 }

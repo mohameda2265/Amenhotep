@@ -1,0 +1,56 @@
+<header class="container-fluid navbar navbar-expand-lg flex-row-reverse navbar-dark bg-dark d-flex justify-content-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse " id="main-menu">
+
+        <ul class="form-inline no-p nav links ">
+            <li class="nav-item align-self-center">
+                <a href="#" class="btn  btn-danger "><i class="fa fa-sign-out "></i> خروج </a>
+            </li>
+            <li class="nav-item align-self-center">
+                <span rel="alternate" class="steel-text trans" style="color:white;">
+                            |مرحبا بك ......
+                </span>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="container">
+    <form class="pull-right  form-inline my-5 my-lg-2" method="GET">
+        <button class=" btn btn-outline-success mr-5  " type="submit"><a [routerLink]="['/employee/addshops']"> إضافة</a></button>
+        <button (click)="searchShops(shopName,towerNumber)" class="btn  btn-info my-2 my-sm-2 mr-1" type="sumit">أبحث</button>
+        <input (input)="onInit()" class="form-control mr-sm-2" type="number" placeholder="رقم البرج" name="tower" [(ngModel)]="towerNumber">
+        <input (input)="onInit()" class="form-control mr-sm-2" type="text" placeholder="اسم المتجر" name="flat" [(ngModel)]="shopName">
+    </form>
+    <table class="table">
+<thead class="thead-dark">
+<tr>
+  <th scope="col" style="text-align:center;">رقم المتجر</th>
+  <th scope="col" style="text-align:center;">البرج</th>
+  <th scope="col" style="text-align:center;">الدور</th>
+  <th scope="col" style="text-align:center;">الإسم</th>
+  <th scope="col" style="text-align:center;">النوع</th>
+  <th scope="col" style="text-align:center;">تفاصيل</th>
+  <th scope="col" style="text-align:center;">اضف لملكية</th>
+  <th scope="col" style="text-align:center;">تعديل</th>
+  <th scope="col" style="text-align:center;">مسح</th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor = "let shop of shops">
+  <th scope="row" style="text-align:center;">{{shop.Number}}</th>
+  <th style="text-align:center;">{{shop.tower}}</th>
+  <th style="text-align:center;">{{shop.floorNumber}}</th>
+  <th style="text-align:center;">{{shop.Name}}</th>
+  <th style="text-align:center;">{{shop.Type}}</th>
+  <th style="text-align:center;"><a [routerLink]="['/employee/shopdetails/',shop.id]" class="btn text-secondary px-0"><i class="fa fa-building" style="font-size:24px;color:red;"></i></a></th>
+  <th style="text-align:center;"><a [routerLink]="['/employee/addownership/',shop.id]" class="btn text-secondary px-0"><i class="fa fa-plus-circle" style="font-size:24px;color:red;"></i></a></th>
+  <th style="text-align:center;"><a [routerLink]="['/employee/addshops/',shop.id]" class="btn text-secondary px-0"><i class="fa fa-edit" style="font-size:24px;color:red;"></i></a></th>
+  <th style="text-align:center;"><a (click)="deleteShop(shop.id)" class="btn text-secondary px-0"><i class="fa fa-trash" style="font-size:24px;color:red;"></i></a></th>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-danger text-center" *ngIf = "shops.length == 0">No Shops to display</div>
+</div>

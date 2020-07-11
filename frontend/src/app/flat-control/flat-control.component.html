@@ -1,0 +1,52 @@
+<header class="container-fluid navbar navbar-expand-lg flex-row-reverse navbar-dark bg-dark d-flex justify-content-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse " id="main-menu">
+
+        <ul class="form-inline no-p nav links ">
+            <li class="nav-item align-self-center">
+                <a href="#" class="btn  btn-danger "><i class="fa fa-sign-out "></i> خروج </a>
+            </li>
+            <li class="nav-item align-self-center">
+                <span rel="alternate" class="steel-text trans" style="color:white;">
+                            |مرحبا بك ......
+                </span>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="container">
+    <form class="pull-right  form-inline my-5 my-lg-2" method="GET">
+        <button class=" btn btn-outline-success mr-5  " type="submit"><a [routerLink]="['/employee/addflats']"> إضافة</a></button>
+        <button (click)="searchFlats(flatNumber,towerNumber)" class="btn  btn-info my-2 my-sm-2 mr-1" type="sumit">أبحث</button>
+        <input (input)="onInit()" class="form-control mr-sm-2" type="number" placeholder="رقم البرج" name="tower" [(ngModel)]="towerNumber">
+        <input (input)="onInit()" class="form-control mr-sm-2" type="number" placeholder="رقم الشقة" name="flat" [(ngModel)]="flatNumber">
+    </form>
+    <table class="table">
+<thead class="thead-dark">
+<tr>
+  <th scope="col" style="text-align:center;">رقم الشقة</th>
+  <th scope="col" style="text-align:center;">رقم الطابق</th>
+  <th scope="col" style="text-align:center;">المساحة</th>
+  <th scope="col" style="text-align:center;">رقم المالك</th>
+  <th scope="col" style="text-align:center;">تفاصيل</th>
+  <th scope="col" style="text-align:center;">تعديل</th>
+  <th scope="col" style="text-align:center;">مسح</th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor = "let flat of flats">
+  <th scope="row" style="text-align:center;">{{flat.Number}}</th>
+  <th style="text-align:center;">{{flat.floorNumber}}</th>
+  <th style="text-align:center;">{{flat.Area}}</th>
+  <th style="text-align:center;">{{flat.owner}}</th>
+  <th style="text-align:center;"><a [routerLink]="['/employee/flatdetails/',flat.id]" class="btn text-secondary px-0"><i class="fa fa-building" style="font-size:24px;color:red;"></i></a></th>
+  <th style="text-align:center;"><a [routerLink]="['/employee/addflats/',flat.id]" class="btn text-secondary px-0"><i class="fa fa-edit" style="font-size:24px;color:red;"></i></a></th>
+  <th style="text-align:center;"><a (click)="deleteFlat(flat.id)" class="btn text-secondary px-0"><i class="fa fa-trash" style="font-size:24px;color:red;"></i></a></th>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-danger text-center" *ngIf = "flats.length == 0">No Flats to display</div>
+</div>

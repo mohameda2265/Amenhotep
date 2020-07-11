@@ -1,0 +1,88 @@
+<header class="container-fluid navbar navbar-expand-lg flex-row-reverse navbar-dark bg-dark d-flex justify-content-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse " id="main-menu">
+
+        <ul class="form-inline no-p nav links ">
+            <li class="nav-item align-self-center">
+                <a href="#" class="btn  btn-danger "><i class="fa fa-sign-out "></i> خروج </a>
+            </li>
+            <li class="nav-item align-self-center">
+                <span rel="alternate" class="steel-text trans" style="color:white;">
+                            |مرحبا بك ......
+                </span>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="container">
+<div style="background-color:black;color:white;margin:10px;text-align:center">
+   <h3>التفاصيل العامة</h3>
+</div>
+<table class="table">
+    <thead class="thead-dark-darkenblue">
+        <tr>
+            <th scope="col" style="text-align:center;color:red;">رقم الموظف</th>
+            <th scope="col" style="text-align:center;color:red;">الرقم القومى</th>
+            <th scope="col" style="text-align:center;color:red;">الإســم</th>
+            <th scope="col" style="text-align:center;color:red;">تاريخ الميلاد</th>
+        </tr>
+    </thead>
+     <tbody>
+        <tr>
+           <th scope="row" style="text-align:center;">{{employee.id}}</th>
+           <th style="text-align:center;">{{employee.NID}}</th>
+           <th style="text-align:center;">{{employee.Name}}</th>
+           <th style="text-align:center;">{{employee.Birthdate}}</th>
+        </tr>
+     </tbody>
+</table>
+<div style="background-color:black;color:white;margin:10px;text-align:center">
+   <h3>تفاصيل الاتصال</h3>
+</div>
+<table class="table">
+    <thead class="thead-dark-darkenblue">
+        <tr>
+            <th scope="col" style="text-align:center;color:red;">رقم الموبايل</th>
+            <th scope="col" style="text-align:center;color:red;">الرقم المنزلى</th>
+        </tr>
+    </thead>
+     <tbody>
+        <tr>
+           <th scope="row" style="text-align:center;">{{employee.Mobile}}</th>
+           <th style="text-align:center;">{{employee.DSL}}</th>
+        </tr>
+     </tbody>
+</table>
+<div style="background-color:black;color:white;margin:10px;text-align:center">
+   <h3>تفاصيل أخرى</h3>
+</div>
+<table class="table">
+    <thead class="thead-dark-darkenblue">
+        <tr>
+            <th scope="col" style="text-align:center;color:red;">العنوان</th>
+            <th scope="col" style="text-align:center;color:red;">المسمى الوظيفى</th>
+        </tr>
+    </thead>
+     <tbody>
+        <tr>
+           <th scope="row" style="text-align:center;">{{employee.Address}}</th>
+           <th style="text-align:center;">{{employee.jobDesc}}</th>
+        </tr>
+     </tbody>
+</table>
+<div style="margin:10px;">
+<div style="background-color:black;color:white;margin:10px;text-align:center">
+   <h3>الصورة الشخصية</h3>
+</div>
+<img src={{employee.Avatar}} class="rounded mx-auto d-block" alt="No image to display" width="500" height="300" style="border:3px solid;">
+</div>
+<div style="margin:10px;">
+<div style="background-color:black;color:white;margin:10px;text-align:center">
+   <h3>صورة البطاقة</h3>
+</div>
+<img src={{employee.Proof}} class="rounded mx-auto d-block" alt="No image to display" width="500" height="300" style="border:3px solid;">
+</div>
+</div>
