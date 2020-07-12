@@ -21,15 +21,14 @@ export class RequestsComponent implements OnInit {
         Mobile: '',
       },
     ];
-    this.newRequest.Type = 'request';
+    this.newRequest.Type = 'طلب';
   }
 
   ngOnInit(): void {}
   createNewRequest() {
-    this.api.createRequest(this.newRequest).subscribe(
-      (data) => {
-        this.newRequest.push(data);
-        console.log(this.newRequest);
+    this.api.createRequest(this.newRequest).subscribe(data =>{
+      this.newRequest = data;
+      console.log(this.newRequest);
         this.submitted = true;
         window.location.reload();
       },

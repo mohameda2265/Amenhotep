@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../api/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-tower-details',
@@ -11,7 +11,7 @@ export class TowerDetailsComponent implements OnInit {
   tid: number;
   tower;
   owner;
-  constructor(private api: ApiService, private route: ActivatedRoute) {
+  constructor(private api: ApiService, private route: ActivatedRoute,private router : Router) {
     this.tid = +this.route.snapshot.paramMap.get('tid');
     this.tower = {
       Name: '',
@@ -51,5 +51,9 @@ export class TowerDetailsComponent implements OnInit {
         alert('حدث خطأ فى الإتصال بالخادم');
       }
     );
+  }
+  logOut(){
+    localStorage.removeItem('userToken');
+    this.router.navigate(['login']);
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../api/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ShopPipe } from './../pipe/shop.pipe';
 
 @Component({
@@ -12,7 +12,7 @@ export class ShopControlComponent implements OnInit {
   shops = [];
   shopName: string;
   towerNumber: number;
-  constructor(private api: ApiService, private pipe: ShopPipe) {}
+  constructor(private api: ApiService, private pipe: ShopPipe,private router : Router) {}
 
   ngOnInit(): void {
     this.onInit();
@@ -49,5 +49,9 @@ export class ShopControlComponent implements OnInit {
     } else {
       this.onInit();
     }
+  }
+  logOut(){
+    localStorage.removeItem('userToken');
+    this.router.navigate(['login']);
   }
 }

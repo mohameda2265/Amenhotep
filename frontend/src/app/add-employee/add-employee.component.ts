@@ -14,7 +14,8 @@ export class AddEmployeeComponent implements OnInit {
   constructor(
     private api: ApiService,
     private _location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router : Router,
   ) {
     this.eid = +this.route.snapshot.paramMap.get('eid');
     this.selectedEmployee = [
@@ -76,5 +77,10 @@ export class AddEmployeeComponent implements OnInit {
         alert('تأكد من صحة البيانات المدخلة');
       }
     );
+  }
+
+  logOut(){
+    localStorage.removeItem('userToken');
+    this.router.navigate(['login']);
   }
 }

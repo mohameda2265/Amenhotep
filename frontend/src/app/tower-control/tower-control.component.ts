@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../api/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TowerPipe } from './../pipe/tower.pipe';
 
 @Component({
@@ -12,7 +12,7 @@ export class TowerControlComponent implements OnInit {
   towers = [];
   blockNumber: number;
   towerName: string;
-  constructor(private api: ApiService, private pipe: TowerPipe) {}
+  constructor(private api: ApiService, private pipe: TowerPipe,private router : Router) {}
 
   ngOnInit(): void {
     this.onInit();
@@ -48,5 +48,9 @@ export class TowerControlComponent implements OnInit {
     } else {
       this.onInit();
     }
+  }
+  logOut(){
+    localStorage.removeItem('userToken');
+    this.router.navigate(['login']);
   }
 }

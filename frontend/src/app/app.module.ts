@@ -54,6 +54,7 @@ import { ShopPipe } from './pipe/shop.pipe';
 import { TowerPipe } from './pipe/tower.pipe';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   declarations: [
     AppComponent,
@@ -111,6 +112,7 @@ import { AuthGuard } from './auth/auth.guard';
     FormsModule,
     MatRadioModule,
     RouterModule,
+    FontAwesomeModule,
   ],
   providers: [
     AuthGuard,

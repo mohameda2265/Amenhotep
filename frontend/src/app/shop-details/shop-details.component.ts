@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-shop-details',
@@ -17,7 +17,7 @@ export class ShopDetailsComponent implements OnInit {
   targetOwnershipID: number;
   targetOwnership = [];
   owners = [];
-  constructor(private api: ApiService, private route: ActivatedRoute) {
+  constructor(private api: ApiService, private route: ActivatedRoute,private router : Router) {
     this.shop = {
       Number: '',
       floorNumber: '',
@@ -112,5 +112,9 @@ export class ShopDetailsComponent implements OnInit {
         alert('حدث خطأ فى الإتصال بالخادم');
       }
     );
+  }
+  logOut(){
+    localStorage.removeItem('userToken');
+    this.router.navigate(['login']);
   }
 }

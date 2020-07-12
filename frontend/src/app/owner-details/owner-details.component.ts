@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../api/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-owner-details',
@@ -11,7 +11,7 @@ export class OwnerDetailsComponent implements OnInit {
   oid: number;
   owner;
   family = [];
-  constructor(private api: ApiService, private route: ActivatedRoute) {
+  constructor(private api: ApiService, private route: ActivatedRoute,private router : Router) {
     this.oid = +this.route.snapshot.paramMap.get('oid');
   }
 
@@ -32,5 +32,9 @@ export class OwnerDetailsComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  logOut(){
+    localStorage.removeItem('userToken');
+    this.router.navigate(['login']);
   }
 }

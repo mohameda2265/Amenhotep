@@ -16,7 +16,8 @@ export class AddShopComponent implements OnInit {
   constructor(
     private api: ApiService,
     private _location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router : Router
   ) {
     this.sid = +this.route.snapshot.paramMap.get('sid');
     this.selectedShop = [
@@ -86,5 +87,9 @@ export class AddShopComponent implements OnInit {
         alert('تأكد من صحة البيانات المدخلة');
       }
     );
+  }
+  logOut(){
+    localStorage.removeItem('userToken');
+    this.router.navigate(['login']);
   }
 }

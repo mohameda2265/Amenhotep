@@ -78,4 +78,8 @@ export class AddCompoundComponent implements OnInit {
       }
     );
   }
+  logOut(){
+    localStorage.removeItem('userToken');
+    this.router.navigate(['login']);
+  }
 }

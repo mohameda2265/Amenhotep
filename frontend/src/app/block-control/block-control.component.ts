@@ -1,7 +1,8 @@
 import { BlockPipe } from '../pipe/block.pipe';
 import { ApiService } from './../api/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-block-control',
@@ -17,7 +18,8 @@ export class BlockControlComponent implements OnInit {
   constructor(
     private api: ApiService,
     private route: ActivatedRoute,
-    private pipe: BlockPipe
+    private pipe: BlockPipe,
+    private router : Router
   ) {}
 
   ngOnInit(): void {
@@ -54,5 +56,9 @@ export class BlockControlComponent implements OnInit {
     } else {
       this.onInit();
     }
+  }
+  logOut(){
+    localStorage.removeItem('userToken');
+    this.router.navigate(['login']);
   }
 }

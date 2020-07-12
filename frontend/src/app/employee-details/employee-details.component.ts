@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../api/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-details',
@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class EmployeeDetailsComponent implements OnInit {
   eid: number;
   employee;
-  constructor(private api: ApiService, private route: ActivatedRoute) {
+  constructor(private api: ApiService, private route: ActivatedRoute,private router : Router) {
     this.eid = +this.route.snapshot.paramMap.get('eid');
   }
 
@@ -24,5 +24,9 @@ export class EmployeeDetailsComponent implements OnInit {
         alert('حدث خطأ فى اللإتصال');
       }
     );
+  }
+  logOut(){
+    localStorage.removeItem('userToken');
+    this.router.navigate(['login']);
   }
 }

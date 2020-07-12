@@ -100,4 +100,8 @@ export class AddTowerComponent implements OnInit {
       }
     );
   }
+  logOut(){
+    localStorage.removeItem('userToken');
+    this.router.navigate(['login']);
+  }
 }

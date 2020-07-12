@@ -1,6 +1,7 @@
 import { ApiService } from './../api/api.service';
 import { CompoundFilterPipe } from './../pipe/compound-filter.pipe';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-compound-control',
@@ -10,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class CompoundControlComponent implements OnInit {
   compounds = [];
   pattern: string;
-  constructor(private api: ApiService, private cpipe: CompoundFilterPipe) {}
+  constructor(private api: ApiService, private cpipe: CompoundFilterPipe,private router : Router) {}
 
   deleteCompound(cid): void {
     this.api.deleteCompound(cid).subscribe(
@@ -48,5 +49,9 @@ export class CompoundControlComponent implements OnInit {
     } else {
       this.onInit();
     }
+  }
+  logOut(){
+    localStorage.removeItem('userToken');
+    this.router.navigate(['login']);
   }
 }

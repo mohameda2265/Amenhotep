@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../api/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-block-details',
@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class BlockDetailsComponent implements OnInit {
   block;
   bid: number;
-  constructor(private api: ApiService, private route: ActivatedRoute) {
+  constructor(private api: ApiService, private route: ActivatedRoute, private router : Router) {
     this.bid = +this.route.snapshot.paramMap.get('bid');
     this.block = {
       compound: '',
@@ -30,5 +30,9 @@ export class BlockDetailsComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  logOut(){
+    localStorage.removeItem('userToken');
+    this.router.navigate(['login']);
   }
 }

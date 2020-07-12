@@ -83,4 +83,8 @@ export class AddBlockComponent implements OnInit {
       }
     );
   }
+  logOut(){
+    localStorage.removeItem('userToken');
+    this.router.navigate(['login']);
+  }
 }

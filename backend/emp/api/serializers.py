@@ -196,7 +196,7 @@ class OfferDetailSerializer(ModelSerializer):
 
 # Request Section
 class RequestCreateSerializer(ModelSerializer):
-    Avatar = Base64ImageField(max_length=None, use_url=True,)
+    # Avatar = Base64ImageField(max_length=None, use_url=True,)
     class Meta:
         model = Requests
         fields = [
@@ -206,7 +206,6 @@ class RequestCreateSerializer(ModelSerializer):
         'created_date',
         'Email',
         'Mobile',
-        'Avatar'
         ]
         # read_only_fields = ["id"]
         
@@ -221,7 +220,6 @@ class RequestListSerializer(ModelSerializer):
         'created_date',
         'Email',
         'Mobile',
-        'Avatar'
         ]
         # read_only_fields = ["id"]
 
@@ -236,7 +234,6 @@ class RequestDetailSerializer(ModelSerializer):
         'created_date',
         'Email',
         'Mobile',
-        'Avatar'
         ]
         # read_only_fields = ["id"]
 

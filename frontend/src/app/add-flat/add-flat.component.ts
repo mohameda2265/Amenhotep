@@ -96,4 +96,8 @@ export class AddFlatComponent implements OnInit {
       }
     );
   }
+  logOut(){
+    localStorage.removeItem('userToken');
+    this.router.navigate(['login']);
+  }
 }

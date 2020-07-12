@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../api/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FlatPipe } from './../pipe/flat.pipe';
 @Component({
   selector: 'app-flat-control',
@@ -14,7 +14,7 @@ export class FlatControlComponent implements OnInit {
   cid: number;
   bid: number;
   tid: number;
-  constructor(private api: ApiService, private pipe: FlatPipe) {}
+  constructor(private api: ApiService, private pipe: FlatPipe,private router : Router) {}
 
   ngOnInit(): void {
     this.onInit();
@@ -50,5 +50,9 @@ export class FlatControlComponent implements OnInit {
     } else {
       this.onInit();
     }
+  }
+  logOut(){
+    localStorage.removeItem('userToken');
+    this.router.navigate(['login']);
   }
 }

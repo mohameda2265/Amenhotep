@@ -15,7 +15,8 @@ export class AddNewsComponent implements OnInit {
   constructor(
     private api: ApiService,
     private _location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router : Router
   ) {
     this.selectedNews = [
       {
@@ -72,5 +73,9 @@ export class AddNewsComponent implements OnInit {
         alert('تأكد من صحة البيانات المدخلة');
       }
     );
+  }
+  logOut(){
+    localStorage.removeItem('userToken');
+    this.router.navigate(['login']);
   }
 }

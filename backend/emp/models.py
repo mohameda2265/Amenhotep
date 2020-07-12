@@ -93,7 +93,7 @@ class Requests(models.Model):
     Action = models.TextField(max_length=250,blank=True, null=True)
     Email = models.EmailField(blank=True, null=True)
     Mobile = models.CharField(validators=[Mobile_regex],max_length=11)
-    Avatar = Base64ImageField(max_length=None, use_url=True)
+    # Avatar = Base64ImageField(max_length=None, use_url=True)
 
     def __str__(self):
         return self.Title

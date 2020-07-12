@@ -1,5 +1,6 @@
 import { ApiService } from './../api/api.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-owner-control',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OwnerControlComponent implements OnInit {
   owners = [];
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService,private router : Router) {}
 
   ngOnInit(): void {
     this.onInit();
@@ -36,5 +37,9 @@ export class OwnerControlComponent implements OnInit {
         alert('حدث خطأ ما');
       }
     );
+  }
+  logOut(){
+    localStorage.removeItem('userToken');
+    this.router.navigate(['login']);
   }
 }

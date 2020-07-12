@@ -13,7 +13,8 @@ export class AddOfferComponent implements OnInit {
   constructor(
     private api: ApiService,
     private _location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router : Router
   ) {
     this.selectedOffer = [
       {
@@ -41,5 +42,9 @@ export class AddOfferComponent implements OnInit {
         alert('تأكد من صحة البيانات المدخلة');
       }
     );
+  }
+  logOut(){
+    localStorage.removeItem('userToken');
+    this.router.navigate(['login']);
   }
 }

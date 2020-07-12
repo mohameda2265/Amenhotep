@@ -1,5 +1,6 @@
 import { ApiService } from './../api/api.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-control',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeControlComponent implements OnInit {
   employees = [];
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService,private router : Router) {}
 
   ngOnInit(): void {
     this.onInit();
@@ -35,5 +36,9 @@ export class EmployeeControlComponent implements OnInit {
         alert('حدث خطأ ما فى الإتصال بالخادم');
       }
     );
+  }
+  logOut(){
+    localStorage.removeItem('userToken');
+    this.router.navigate(['login']);
   }
 }
