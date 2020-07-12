@@ -617,6 +617,9 @@ class FlatListSerializer(ModelSerializer):
         'owner',
         'tower',
         'Number',
+        'floorNumber',
+        'Area',
+        'Desc',
         'Inhabited',
         ]
 

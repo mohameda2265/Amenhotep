@@ -1,5 +1,5 @@
 <section class="background-flat-rose">
-    <h4 class="text-center white-text p-top-1 p-bottom-1 no-m arabic">اخبار عن شركة امنحتب</h4>
+    <h2 class="text-center white-text p-top-1 p-bottom-1 no-m arabic">تفاصيل العرض</h2>
 </section>
 <section class="container-fluid">
     <section class="row">
@@ -10,14 +10,17 @@
                         <img src="{{one.Avatar}}" alt="صورة" class="img-fluid img-thumbnail">
                     </a>
                 </figure>
-                <div class="col-sm-8 col-md-8 text-right">
-                    <h3 class="arabic">
-                        <p class="link-red trans">{{one.Title}}</p>
-                    </h3>
-                    <p class="arabic rtl">{{one.Desc}}</p>
-                    <p class="text-muted arabic rtl"><i class="fa fa-calendar"></i>{{one.created_date}}</p>
+                <div class="col-sm-12 col-md-8 text-right">
+                    <h2 class="arabic" style="font-weight:bold;">
+                        <p class="link-red trans" style="color:red;">{{one.Title}}</p>
+                    </h2>
+                    <p class="text-muted arabic rtl"><i class="fa fa-calendar"></i>  {{one.created_date| date : 'medium'}}</p>
+                    <p class="text-muted arabic rtl"><i class="fa fa-building"></i><span style="color:black;"> الدفع</span> :  {{one.Installement}}</p>
+                    <p class="text-muted arabic rtl"><i class="fa fa-money"></i><span style="color:black;"> السعر</span> :  {{one.Cost}}</p>
+                    <p *ngIf="one.Installement == 'تقسيط'" class="text-muted arabic rtl"><i class="fa fa-credit-card"></i><span style="color:black;"> المقدم</span> :  {{one.minPayment}}</p>
+                    <p *ngIf="one.Installement == 'تقسيط'" class="text-muted arabic rtl"><i class="fa fa-times-circle"></i><span style="color:black;"> مدة التقسيط</span> :  {{one.Duration}}</p>
+                    <p class="arabic rtl" style="font-weight:bold;">{{one.Desc}}</p>
                 </div>
-                
             </article>
         </div>
     </section>

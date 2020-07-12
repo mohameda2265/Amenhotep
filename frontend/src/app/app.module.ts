@@ -55,6 +55,9 @@ import { TowerPipe } from './pipe/tower.pipe';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TextPipe } from './pipe/text.pipe';
+import { OwnerFilterPipe } from './pipe/owner-filter.pipe';
+import { FamilyFilterPipe } from './pipe/family-filter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -102,7 +105,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FlatPipe,
     OwnershipsPipe,
     ShopPipe,
-    TowerPipe
+    TowerPipe,
+    TextPipe,
+    OwnerFilterPipe,
+    FamilyFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -121,7 +127,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     TowerPipe,
     FlatPipe,
     ShopPipe,
-    EmployeePipe,],
+    EmployeePipe,
+    FamilyFilterPipe,
+    OwnerFilterPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

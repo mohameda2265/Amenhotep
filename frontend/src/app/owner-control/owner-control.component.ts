@@ -1,6 +1,7 @@
 import { ApiService } from './../api/api.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { OwnerFilterPipe } from '../pipe/owner-filter.pipe';
 
 @Component({
   selector: 'app-owner-control',
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class OwnerControlComponent implements OnInit {
   owners = [];
-  constructor(private api: ApiService,private router : Router) {}
+  pattern : string ;
+  constructor(private api: ApiService,private router : Router,private pipe : OwnerFilterPipe) {}
 
   ngOnInit(): void {
     this.onInit();
@@ -38,6 +40,16 @@ export class OwnerControlComponent implements OnInit {
       }
     );
   }
+
+  searchOwners(pattern): void {
+    console.log(pattern);
+    if (pattern) {
+      this.owners = this.pipe.transform(this.owners, pattern);
+    } else {
+      this.onInit();
+    }
+  }
+
   logOut(){
     localStorage.removeItem('userToken');
     this.router.navigate(['login']);

@@ -44,7 +44,7 @@
   <th style="text-align:center;">{{shop.tower}}</th>
   <th style="text-align:center;">{{shop.floorNumber}}</th>
   <th style="text-align:center;">{{shop.Name}}</th>
-  <th style="text-align:center;">{{shop.Type}}</th>
+  <th style="text-align:center;">{{shop.Type | text }}</th>
   <th style="text-align:center;"><a [routerLink]="['/employee/shopdetails/',shop.id]" class="btn text-secondary px-0"><i class="fa fa-building" style="font-size:24px;color:red;"></i></a></th>
   <th style="text-align:center;"><a [routerLink]="['/employee/addownership/',shop.id]" class="btn text-secondary px-0"><i class="fa fa-plus-circle" style="font-size:24px;color:red;"></i></a></th>
   <th style="text-align:center;"><a [routerLink]="['/employee/addshops/',shop.id]" class="btn text-secondary px-0"><i class="fa fa-edit" style="font-size:24px;color:red;"></i></a></th>

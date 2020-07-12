@@ -20,8 +20,8 @@
 <div class="container">
     <form class="pull-right  form-inline my-5 my-lg-2" method="GET">
         <button class=" btn btn-outline-success mr-5  " type="submit"><a [routerLink]="['/employee/addowners/']"> إضافة</a></button>
-        <button class="btn  btn-outline-info my-2 my-sm-2" type="sumit">أبحث</button>
-        <input class="form-control mr-sm-2" type="search" placeholder="أبحث" name="q">
+        <button class="btn  btn-info my-2 my-sm-2 mr-1" type="submit" (click)="searchOwners(pattern)">أبحث</button>
+        <input (input)="searchOwners(pattern)" class="form-control mr-sm-2" type="search" placeholder="اسم المالك" name="pattern" [(ngModel)]="pattern">
     </form>
     <table class="table">
 <thead class="thead-dark">

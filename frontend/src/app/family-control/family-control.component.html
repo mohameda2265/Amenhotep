@@ -19,8 +19,9 @@
 </header>
 <div class="container">
     <form class="pull-right  form-inline my-5 my-lg-2" method="GET">
-        <button class="btn  btn-outline-info my-2 my-sm-2" type="sumit">أبحث</button>
-        <input class="form-control mr-sm-2" type="search" placeholder="أبحث" name="q">
+        
+        <button class="btn  btn-info my-2 my-sm-2 mr-1" type="submit" (click)="searchFamily(pattern)">أبحث</button>
+        <input (input)="searchFamily(pattern)" class="form-control mr-sm-2" type="search" placeholder="اسم الشخص" name="pattern" [(ngModel)]="pattern">
     </form>
     <table class="table">
 <thead class="thead-dark">
@@ -36,11 +37,11 @@
 <tbody>
 <tr *ngFor = "let member of members">
   <th scope="row" style="text-align:center;">{{member.id}}</th>
-  <td style="text-align:center;">{{member.Name}}</td>
-  <td style="text-align:center;">{{correspondingOwner.Name}}</td>
-  <td style="text-align:center;">{{member.Birthdate}}</td>
-  <td style="text-align:center;">{{member.Relationship}}</td>
-  <td style="text-align:center;"><a class="btn text-secondary px-0" (click)="deleteMember(member.id)"><i class="fa fa-trash" style="font-size:24px;color:red;"></i></a></td>
+  <th style="text-align:center;">{{member.Name}}</th>
+  <th style="text-align:center;">{{correspondingOwner.Name}}</th>
+  <th style="text-align:center;">{{member.Birthdate}}</th>
+  <th style="text-align:center;">{{member.Relationship | text }}</th>
+  <th style="text-align:center;"><a class="btn text-secondary px-0" (click)="deleteMember(member.id)"><i class="fa fa-trash" style="font-size:24px;color:red;"></i></a></th>
 </tr>
 </tbody>
 </table>

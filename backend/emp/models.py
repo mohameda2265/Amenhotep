@@ -196,7 +196,7 @@ class Compound(models.Model):
 class Block(models.Model):
 
     compound = models.ForeignKey(Compound,on_delete=models.CASCADE,related_name="compound_block")
-    Number = models.IntegerField(unique=True)
+    Number = models.IntegerField()
     Area = models.FloatField(max_length=8)
     Desc = models.TextField(max_length=300,blank=True, null=True)
     towersNumber = models.IntegerField(blank=True, null=True)
@@ -269,6 +269,7 @@ class Store(models.Model):
     Restaurant = 'restaurant'
     Cafe = 'cafe'
     Shop = 'shop'
+    Mall = 'mall'
 
     tower = models.ForeignKey(Tower,on_delete=models.CASCADE,related_name="tower_store")
     Number = models.IntegerField()
@@ -278,7 +279,8 @@ class Store(models.Model):
         (Shop,'Shop'),
         (Restaurant,'Restaurant'),
         (Cafe,'Cafe'),
-        (Gym,'Gym')
+        (Gym,'Gym'),
+        (Mall,'Mall')
     ]
     Type = models.CharField(max_length=12,choices=state_choices,default=Shop)
     owners = models.ManyToManyField(

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../api/api.service';
 import { Router } from '@angular/router';
+import { FamilyFilterPipe } from '../pipe/family-filter.pipe';
 
 @Component({
   selector: 'app-family-control',
@@ -10,7 +11,8 @@ import { Router } from '@angular/router';
 export class FamilyControlComponent implements OnInit {
   members = [];
   correspondingOwner: any;
-  constructor(private api: ApiService,private router : Router) {}
+  pattern : string;
+  constructor(private api: ApiService,private router : Router,private pipe : FamilyFilterPipe) {}
   ngOnInit(): void {
     this.api.getFamilyMembers().subscribe(
       (data) => {
@@ -61,6 +63,15 @@ export class FamilyControlComponent implements OnInit {
       }
     );
   }
+  searchFamily(pattern): void {
+    console.log(pattern);
+    if (pattern) {
+      this.members = this.pipe.transform(this.members, pattern);
+    } else {
+      this.onInit();
+    }
+  }
+
   logOut(){
     localStorage.removeItem('userToken');
     this.router.navigate(['login']);

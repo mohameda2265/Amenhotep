@@ -62,14 +62,14 @@
 <table class="table">
     <thead class="thead-dark-link">
         <tr>
-            <th scope="col" style="text-align:center;color:red;">الإســـــم</th>
-            <th scope="col" style="text-align:center;color:red;">صلة القرابة</th>
+            <th scope="col" style="text-align:center;">الإســـــم</th>
+            <th scope="col" style="text-align:center;">صلة القرابة</th>
         </tr>
     </thead>
      <tbody>
         <tr *ngFor="let member of family | family : oid">
            <th scope="row" style="text-align:center;color:red;">{{member.Name}}</th>
-           <td style="text-align:center;color:red;">{{member.Relationship}}</td>
+           <td style="text-align:center;color:red;">{{member.Relationship | text }}</td>
         </tr>
      </tbody>
 </table>

@@ -12,7 +12,7 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
   login ;
-  isLoginError : boolean = false;
+  notSubmitted = false;
   constructor(private api : ApiService , private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -24,12 +24,12 @@ export class LoginComponent implements OnInit {
   onLogin(){
     this.api.loginUser(this.login).subscribe(
       response => {
-        console.log(response.token);
+        console.log(response);
         localStorage.setItem('userToken',response.token)
         this.router.navigate(['employee']);
       },
       (err : HttpErrorResponse)=>{
-        this.isLoginError = true;
+        this.notSubmitted = true;
       }
     );
   }

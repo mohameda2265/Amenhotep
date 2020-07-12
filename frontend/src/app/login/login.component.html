@@ -18,12 +18,9 @@
             <input type="text" id="login" class="fadeIn second" name="login" placeholder="User Name" [(ngModel)]="login.username">
             <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" [(ngModel)]="login.password">
             <input type="submit" class="fadeIn fourth" value="Log In" (click)="onLogin()">
+            <div *ngIf="notSubmitted" class="alert alert-danger box-msg" role="alert" id="danger" style="text-align:center;">Error Username or Password</div>
         </form>
 
-        <!-- Remind Passowrd -->
-        <div id="formFooter">
-            <a class="underlineHover" href="#">Forgot Password?</a>
-        </div>
 
     </div>
 </div>

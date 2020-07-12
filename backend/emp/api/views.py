@@ -86,6 +86,7 @@ from emp.models import (
     Family,
 )
 
+
 # News Section
 class NewsCreateAPIView(CreateAPIView):
     queryset = News.objects.all()
