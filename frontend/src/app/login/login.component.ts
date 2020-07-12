@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   login ;
+  isLoginError : boolean = false;
   constructor(private api : ApiService , private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -22,11 +24,12 @@ export class LoginComponent implements OnInit {
   onLogin(){
     this.api.loginUser(this.login).subscribe(
       response => {
-        console.log(response);
-        this.router.navigate(['home']);
+        console.log(response.token);
+        localStorage.setItem('userToken',response.token)
+        this.router.navigate(['employee']);
       },
-      error => {
-        console.log('error ' , error);
+      (err : HttpErrorResponse)=>{
+        this.isLoginError = true;
       }
     );
   }

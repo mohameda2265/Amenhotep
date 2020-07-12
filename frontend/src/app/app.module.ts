@@ -53,6 +53,7 @@ import { OwnershipsPipe } from './pipe/ownerships.pipe';
 import { ShopPipe } from './pipe/shop.pipe';
 import { TowerPipe } from './pipe/tower.pipe';
 import { RouterModule } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -112,6 +113,7 @@ import { RouterModule } from '@angular/router';
     RouterModule,
   ],
   providers: [
+    AuthGuard,
     CompoundFilterPipe,
     BlockPipe,
     TowerPipe,
