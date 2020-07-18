@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../api/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-owner',
@@ -11,6 +12,8 @@ import { Location } from '@angular/common';
 export class AddOwnerComponent implements OnInit {
   selectedOwner;
   oid: number;
+  selectedImage:File=null;
+  imgSrc: string ="assets/images/1.png";
   constructor(
     private api: ApiService,
     private _location: Location,
@@ -22,8 +25,9 @@ export class AddOwnerComponent implements OnInit {
       {
         NID: '',
         Name: '',
-        Proof: '',
-        Avatar: '',
+        Code: '',
+        // Proof: '',
+        // Avatar: '',
         Birthdate: '',
         Mobile: '',
         DSL: '',
@@ -55,8 +59,24 @@ export class AddOwnerComponent implements OnInit {
     }
   }
 
+  showPreview(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      // reader.onload = (e: any) => this.imgSrc = e.target.result;
+      reader.readAsDataURL(event.target.files[0]);
+      this.selectedImage = event.target.files[0];
+    }
+    else {
+      // this.imgSrc ="assets/img/image-placeholder.jpg" ;
+      
+      this.selectedImage = null;
+    }
+  }
+
   addOwner() {
-    this.api.addNewOwner(this.selectedOwner).subscribe(
+    console.log(this.selectedOwner);
+    console.log(this.selectedImage);
+    this.api.addNewOwner(this.selectedOwner,this.selectedImage).subscribe(
       (data) => {
         this.selectedOwner.push(data);
         this._location.back();

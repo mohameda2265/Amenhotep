@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class OwnerDetailsComponent implements OnInit {
   oid: number;
   owner;
+  ownerArr = new Array();
   family = [];
   constructor(private api: ApiService, private route: ActivatedRoute,private router : Router) {
     this.oid = +this.route.snapshot.paramMap.get('oid');
@@ -19,6 +20,9 @@ export class OwnerDetailsComponent implements OnInit {
     this.api.getOwner(this.oid).subscribe(
       (data) => {
         this.owner = data;
+        this.ownerArr.push(this.owner);
+        console.log(this.ownerArr);
+        
       },
       (error) => {
         console.log(error);

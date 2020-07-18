@@ -31,11 +31,11 @@
         </tr>
     </thead>
      <tbody>
-        <tr>
-           <th scope="row" style="text-align:center;">{{owner.id}}</th>
-           <td style="text-align:center;">{{owner.NID}}</td>
-           <td style="text-align:center;">{{owner.Name}}</td>
-           <td style="text-align:center;">{{owner.Birthdate}}</td>
+        <tr *ngFor= "let o of ownerArr">
+           <th scope="row" style="text-align:center;">{{o.id}}</th>
+           <td style="text-align:center;">{{o.NID}}</td>
+           <td style="text-align:center;">{{o.Name}}</td>
+           <td style="text-align:center;">{{o.Birthdate}}</td>
         </tr>
      </tbody>
 </table>
@@ -50,9 +50,9 @@
         </tr>
     </thead>
      <tbody>
-        <tr>
-           <th scope="row" style="text-align:center;">{{owner.Mobile}}</th>
-           <td style="text-align:center;">{{owner.DSL}}</td>
+        <tr *ngFor= "let o of ownerArr">
+           <th scope="row" style="text-align:center;">{{o.Mobile}}</th>
+           <td style="text-align:center;">{{o.DSL}}</td>
         </tr>
      </tbody>
 </table>

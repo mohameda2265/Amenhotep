@@ -133,22 +133,31 @@ export class ApiService {
     });
   }
 
-  addNewOwner(owner): Observable<any> {
-    const body = {
-      NID: owner.NID,
-      Name: owner.Name,
-      Proof: owner.Proof,
-      Birthdate: owner.Birthdate,
-      Mobile: owner.Mobile,
-      DSL: owner.DSL,
-      Avatar: owner.Avatar,
-      Type: owner.Type,
-      Notes: owner.Notes,
-    };
-    console.log(body);
-    return this.http.post(this.baseurl + '/api/owner/new/', body, {
-      headers: this.httpHeaders,
-    });
+  addNewOwner(owner,image:File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('NID', owner.NID);
+    formData.append('Name', owner.Name);
+    formData.append('Code', owner.Code);
+    formData.append('Proof', image);
+    formData.append('Birthdate', owner.Birthdate);
+    formData.append('Mobile', owner.Mobile);
+    formData.append('DSL', owner.DSL);
+    formData.append('Avatar', image);
+    formData.append('Type', owner.Type);
+    formData.append('Notes', owner.Notes);
+    // const body = {
+    //   NID: owner.NID,
+    //   Name: owner.Name,
+    //   Proof: owner.Proof,
+    //   Birthdate: owner.Birthdate,
+    //   Mobile: owner.Mobile,
+    //   DSL: owner.DSL,
+    //   Avatar: owner.Avatar,
+    //   Type: owner.Type,
+    //   Notes: owner.Notes,
+    // };
+    console.log(formData);
+    return this.http.post(this.baseurl + '/api/owner/new/', formData);
   }
 
   addNewEmployee(employee): Observable<any> {
